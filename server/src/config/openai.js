@@ -1,30 +1,48 @@
+import "dotenv/config";
 import OpenAI from "openai";
+import { fileURLToPath } from "url";
+import path from "path";
 
-module.exports = class openai {
-    static OpenAI(){const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-      });
-      return openai;
-}
-    static textCompletion({prompt}){
+/** Modelos autorizados */
+export const MODELS = {
+  chat: ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"],
+  embeddings: ["text-embedding-3-small", "text-embedding-3-large"]
+};
 
-        return {
-            model: "gpt-4.1",
-            input: `${prompt}`,
-            text: {
-              "format": {
-                "type": "text"
-              }
-            },
-            reasoning: {},
-            tools: [],
-            temperature: 1,
-            max_output_tokens: 2048,
-            top_p: 1,
-            store: true
-          };
-    }
+let cached;
+
+/** Cria (ou devolve) o cliente OpenAI */
+export default function createOpenAI() {
+  if (cached) return cached;
+
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) throw new Error("Env var OPENAI_API_KEY não definida");
+
+  cached = new OpenAI({ apiKey });          // baseURL default
+  return cached;
 }
 
+/** Autoteste */
+export async function selfTest() {
+  try {
+    const client = createOpenAI();
+    await client.chat.completions.create({
+      model: MODELS.chat[0],
+      messages: [{ role: "user", content: "ping" }],
+      max_tokens: 1
+    });
+    return true;
+  } catch (err) {
+    console.error("OpenAI self-test falhou →", err.message);
+    return false;
+  }
+}
 
-const response = await openai.responses.create()
+/* roda self-test se executado diretamente */
+const isMain = fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+
+if (isMain) {
+  const ok = await selfTest();
+  console.log(ok ? "✅ OpenAI OK" : "❌ OpenAI ERROR");
+  process.exit(ok ? 0 : 1);
+}
