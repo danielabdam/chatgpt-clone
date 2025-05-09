@@ -1,3 +1,14 @@
+.page-title {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 22px;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 300;
+  z-index: 10;
+}
+
 .App {
   text-align: center;
 }
@@ -49,6 +60,16 @@
   z-index: 1000;
 }
 
+.App-header p {
+  margin-bottom: 10px; /* reduz o espaço abaixo do parágrafo */
+}
+
+.chat-wrapper h2 {
+  margin-top: 0;
+  margin-bottom: 10px; /* ajusta o espaçamento do título "Como posso ajudar?" */
+}
+
+
 .question-box {
   margin-top: 20px;
   text-align: center;
@@ -82,5 +103,94 @@
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #b528b9;
 }
+.App-footer-custom {
+  background-color: #1c1c1c;
+  color: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 25px 400px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  border-top: 1px solid #2c2c2c;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.footer-left {
+  justify-content: flex-start;
+}
+
+.footer-right {
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.footer-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.footer-center a {
+  color: #9f65ff;
+  text-decoration: none;
+}
+
+.footer-center a:hover {
+  text-decoration: underline;
+}
+
+.footer-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-right li {
+  font-size: 13px;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.footer-right li::before {
+  content: '›';
+  color: #9f65ff;
+  margin-right: 4px;
+}
+
+.github-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) saturate(100%) invert(13%) sepia(85%) saturate(7500%) hue-rotate(255deg) brightness(90%) contrast(90%);
+}
+.footer-right a {
+  color: #9f65ff; /* ⬅️ Substitua essa cor pela que quiser */
+  text-decoration: none;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
