@@ -1,68 +1,39 @@
 import React, { useState } from 'react';
-import logo from './chatgpt-6.svg';
+import logo from './iconnew.svg';
 import './styles/App.css';
+import Chat from './components/chat/Chat'; // ✅ com "c" minúsculo
+import ChatHistory from './components/ChatHistory/ChatHistory';
+
 
 function App() {
-  const [question, setQuestion] = useState('');
-
-  const handleInputChange = (event) => {
-    setQuestion(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    alert(`Pergunta enviada: ${question}`);
-    // Aqui você pode adicionar a lógica para processar a pergunta
-  };
-
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <div className="page-title">Projeto Integração de IA</div>
         <p>
-          <code>Projeto de clone do ChatGPT</code>
         </p>
-        <div className="question-box">
-          <input
-            type="text"
-            placeholder="Digite sua pergunta aqui..."
-            value={question}
-            onChange={handleInputChange}
-            className="question-input"
-          />
-          <button onClick={handleSubmit} className="submit-button">
-            Enviar
-          </button>
-        </div>
-        <a
-          className="App-link"
-          href="https://github.com/danielabdam/chatgpt-clone"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Link para o repositório do projeto
-        </a>
+        <Chat />
       </header>
-      <footer className="App-footer">
-        Criado por Daniel Abdam e Andre Azevdo
-        <br />
-        <a
-          className="App-link"
-          href="https://github.com/danielabdam"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub do Daniel Abdam
-        </a>
-        <br />
-        <a
-          className="App-link"
-          href="https://github.com/ambizito"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub do Andre Azevdo
-        </a>
-      </footer>
+      <footer className="App-footer-custom">
+  <div className="footer-left">
+    <a href="https://github.com/danielabdam/chatgpt-clone" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" className="github-icon" />
+    </a>
+  </div>
+  <div className="footer-center">
+    <span>© 2025 <a href="https://github.com" target="_blank" rel="noopener noreferrer">DA & AA</a>. Todos os direitos reservados.</span>
+  </div>
+  <div className="footer-right">
+    <strong>Colaboradores</strong>
+    <ul>
+      <li><a href="https://github.com/danielabdam" target="_blank" rel="noopener noreferrer">Daniel Abdam</a></li>
+      <li><a href="https://github.com/ambizito" target="_blank" rel="noopener noreferrer">Andre Azevedo</a></li>
+    </ul>
+  </div>
+</footer>
+
+
     </div>
   );
 }
