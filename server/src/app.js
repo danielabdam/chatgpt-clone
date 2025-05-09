@@ -1,14 +1,14 @@
-const express = require('express')
-const cors =  require("cors")
-const routes = require("./routes/routes")
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import routes from "./src/routes/routes.js";
 
-require("dotenv").config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
+app.use(express.json());
+app.use(cors());
+app.use(routes);              // routes é um Router, não uma função
 
-app.use(express.json())
-app.use(cors())
-app.use(routes())
-
-module.exports = app
+export default app;
