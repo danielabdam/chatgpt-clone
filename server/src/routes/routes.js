@@ -1,7 +1,8 @@
-const express = require("express");
-const promptControllers = require("../controllers/prompt-controllers");
-const routes = express.Router();
+import { Router } from "express";
+import promptControllers from "../controllers/prompt-controllers.js";
 
-routes.post('api/prompt', promptControllers.sandText)
+const routes = Router();
 
-module.exports = routes;
+routes.post("/api/prompt", promptControllers.sendText);
+
+export default routes;
