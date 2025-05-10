@@ -3,17 +3,14 @@ import './Chat.css';
 import ChatHistory from '../ChatHistory/ChatHistory';
 
 const Chat = () => {
-  const [chats, setChats] = useState([]); // array de sessões de chat
+  const [chats, setChats] = useState([{ title: 'Chat 01', messages: [] }]);
   const [activeChatIndex, setActiveChatIndex] = useState(0);
   const [input, setInput] = useState('');
-
+  const [isConversing, setIsConversing] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Inicializa com um chat vazio
   useEffect(() => {
-    if (chats.length === 0) {
-      setChats([{ title: 'Chat 01', messages: [] }]);
-    }
+    scrollToBottom();
   }, [chats]);
 
   const scrollToBottom = () => {
@@ -33,7 +30,7 @@ const Chat = () => {
 
     setChats(updatedChats);
     setInput('');
-    scrollToBottom();
+    setIsConversing(true);
   };
 
   const handleKeyDown = (e) => {
@@ -45,18 +42,26 @@ const Chat = () => {
     setChats([...chats, { title: newTitle, messages: [] }]);
     setActiveChatIndex(chats.length);
     setInput('');
+    setIsConversing(false);
   };
 
-  const loadConversation = (index) => {
-    setActiveChatIndex(index);
-    setInput('');
+  const loadConversation = (chat) => {
+    const index = chats.findIndex(c => c.title === chat.title);
+    if (index !== -1) {
+      setActiveChatIndex(index);
+      setInput('');
+      setIsConversing(true);
+    }
   };
 
   return (
-    <div className="chat-layout">
-      {/* Chat principal */}
+    <div className={`chat-layout ${isConversing ? 'expanded' : ''}`}>
       <div className="chat-wrapper">
-        <h2>Como posso ajudar?</h2>
+        {!isConversing && (
+          <div className="chat-header">
+            <h2>Como posso ajudar?</h2>
+          </div>
+        )}
         <div className="chat-box">
           <div className="messages">
             {chats[activeChatIndex]?.messages.map((msg, index) => (
@@ -79,15 +84,13 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* Histórico */}
       <ChatHistory
-        history={chats.map((chat, i) => ({
+        history={chats.map((chat) => ({
           title: chat.title,
-          timestamp: new Date().toLocaleString(), // você pode armazenar isso por chat se preferir
-          index: i,
+          timestamp: new Date().toLocaleString(),
         }))}
-        onSelect={(item) => loadConversation(item.index)}
-        handleNewChat={handleNewChat}
+        onSelect={loadConversation}
+        onNewChat={handleNewChat}
       />
     </div>
   );
