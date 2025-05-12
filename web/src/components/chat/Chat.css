@@ -1,26 +1,37 @@
+/* Layout base */
+.chat-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #2d2d2d;
+}
+
 .chat-layout {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
   width: 100%;
   max-width: 1300px;
-  padding: 30px 20px;
+  padding: 20px;
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
+/* Modo expandido */
 .chat-layout.expanded {
   max-width: 100%;
-  padding: 30px;
+  padding: 20px;
 }
 
+/* Centralização do chat */
 .chat-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+  width: 100%;
 }
 
 .chat-header {
@@ -28,6 +39,7 @@
   font-size: 28px;
   text-align: center;
 }
+
 
 .chat-box {
   background-color: #363636;
@@ -43,6 +55,58 @@
   max-height: 70vh;
 }
 
+/* Ajustes para o botão de histórico (agora único) */
+.history-toggle-btn-container {
+  position: absolute;
+  top: 0px; /* Topo da tela */
+  right: 10px; /* Alinhado à direita */
+  z-index: 1000;
+}
+
+.history-toggle-btn {
+  position: fixed; /* Fixa o botão no topo da página */
+  top: 10px; /* Distância do topo */
+  left: 90%; /* Alinha à direita */
+  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000; /* Garante que o botão fique acima de outros elementos */
+}
+
+.history-toggle-btn:hover {
+  background-color: #357ab8;
+}
+
+.chat-history-container {
+  position: fixed; /* Fixa o contêiner na página */
+  top: 70px; /* Distância do topo, abaixo do botão */
+  left: 90%; /* Alinha à direita */
+  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
+  z-index: 999; /* Garante que o contêiner fique acima de outros elementos */
+}
+
+.chat-history-box {
+  position: absolute; /* Relativo ao contêiner */
+  top: 50px; /* Distância do topo dentro do contêiner */
+  left: 50%; /* Centraliza dentro do contêiner */
+  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
+  width: 300px;
+  max-height: 400px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  z-index: 998; /* Garante que o histórico fique abaixo do contêiner */
+}
+
+/* Mensagens */
 .messages {
   overflow-y: auto;
   flex: 1;
@@ -72,6 +136,7 @@
   align-self: flex-start;
 }
 
+/* Input */
 .input-container {
   display: flex;
   align-items: center;
@@ -102,4 +167,52 @@
 
 .input-container button:hover {
   background-color: #357ab8;
+}
+
+/* Histórico de chats */
+.chat-history-box h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.chat-history-box hr {
+  border: none;
+  border-top: 2px solid #ccc;
+  margin-bottom: 12px;
+}
+
+.chat-history-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-history-box li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3a3a3a;
+  padding: 8px 10px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #ccc;
+}
+
+.chat-history-box li:hover {
+  background-color: #4a4a4a;
+}
+
+.chat-icon {
+  color: #4B0082;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.chat-time {
+  font-size: 12px;
+  color: #888;
 }
