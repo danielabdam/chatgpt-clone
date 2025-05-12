@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import './ChatHistory.css';
 
 const ChatHistory = ({ history, onSelect, onNewChat }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  // Controle do estado de visibilidade do histórico
 
   const toggleHistory = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen);  // Alterna entre mostrar e esconder o histórico
   };
 
   return (
     <div className="chat-history-container">
+      {/* Botão para abrir/fechar o histórico */}
       <button className="history-toggle-btn" onClick={toggleHistory}>
-        ☰
+        {isOpen ? 'X' : '☰'} {/* Muda o ícone conforme o estado */}
       </button>
-      {isOpen && (
+      {isOpen && (  // Exibe o histórico somente quando 'isOpen' for verdadeiro
         <div className="chat-history-box">
           <div className="chat-header">
             <button className="new-chat-btn" onClick={onNewChat}>+</button>
