@@ -50,14 +50,14 @@ const Chat = () => {
     if (index !== -1) {
       setActiveChatIndex(index);
       setInput('');
-      setIsConversing(true);
+      setIsConversing(chats[index].messages.length > 0);
     }
   };
 
   return (
-    <div className={`chat-layout ${isConversing ? 'expanded' : ''}`}>
+    <div className={`chat-layout ${chats[activeChatIndex]?.messages.length > 0 ? 'expanded' : ''}`}>
       <div className="chat-wrapper">
-        {!isConversing && (
+        {chats[activeChatIndex]?.messages.length === 0 && (
           <div className="chat-header">
             <h2>Como posso ajudar?</h2>
           </div>
