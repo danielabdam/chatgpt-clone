@@ -13,8 +13,8 @@ function App() {
         <div className="page-title">Projeto Integração de IA</div>
         <p>
         </p>
-        <Chat />
       </header>
+        <Chat />
       <footer className="App-footer-custom">
   <div className="footer-left">
     <a href="https://github.com/danielabdam/chatgpt-clone" target="_blank" rel="noopener noreferrer">
