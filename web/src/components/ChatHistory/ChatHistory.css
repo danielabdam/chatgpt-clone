@@ -1,8 +1,8 @@
-.chat-history-container {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1000;
+/* Botão para abrir e fechar o histórico */
+.history-toggle-btn-container {
+  top: 0%; /* Alinha no topo */
+  right: 10px; /* Coloca o botão no canto superior direito */
+  z-index: 1000; /* Garante que o botão fique visível sobre os outros componentes */
 }
 
 .history-toggle-btn {
@@ -16,10 +16,11 @@
   cursor: pointer;
 }
 
+/* Caixa do histórico de chats */
 .chat-history-box {
   position: absolute;
-  bottom: 60px;
-  left: 0;
+  top: 80px; /* Ajusta a altura para que o histórico fique abaixo do título */
+  right: 20px; /* Fixa o histórico no canto superior direito */
   width: 300px;
   max-height: 400px;
   background-color: #1e1e1e;
@@ -75,3 +76,4 @@
   font-size: 12px;
   color: #888;
 }
+
