@@ -66,6 +66,16 @@
   margin-bottom: 10px; /* ajusta o espaçamento do título "Como posso ajudar?" */
 }
 
+/* Título da página */
+.page-title {
+  position: absolute; /* Fixa a posição do texto */
+  top: 10px; /* Distância do topo */
+  left: 20px; /* Distância da borda esquerda */
+  font-size: 18px; /* Ajuste o tamanho da fonte, se necessário */
+  color: white; /* Cor do texto */
+  font-weight: bold; /* Deixa o texto em negrito */
+}
+
 
 .question-box {
   margin-top: 20px;
