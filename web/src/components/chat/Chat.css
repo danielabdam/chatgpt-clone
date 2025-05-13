@@ -1,6 +1,8 @@
+/* Global Styles */
 * {
   box-sizing: border-box;
 }
+
 :root {
   --primary-color: #9f65ff;
   --text-color: #fff;
@@ -8,12 +10,13 @@
   --background-color-light: #3a3a3a;
   --background-shadow-color: 0, 0, 0;
 }
-/* Layout base */
+
+/* Layout Base */
 .chat-container {
-  padding-left: 20px;  /* Espaço à esquerda */
-  padding-right: 20px; /* Espaço à direita */
-  width: 100%; /* Preenche a largura total da tela */
-  box-sizing: border-box; /* Garante que o padding não interfira no layout */
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chat-layout {
@@ -27,13 +30,12 @@
   transition: all 0.3s ease;
 }
 
-/* Modo expandido */
 .chat-layout.expanded {
   max-width: 100%;
   padding: 20px;
 }
 
-/* Centralização do chat */
+/* Chat Wrapper */
 .chat-wrapper {
   flex: 1;
   display: flex;
@@ -49,7 +51,7 @@
   text-align: center;
 }
 
-
+/* Chat Box */
 .chat-box {
   background-color: #363636;
   border-radius: 20px;
@@ -64,58 +66,7 @@
   max-height: 70vh;
 }
 
-/* Ajustes para o botão de histórico (agora único) */
-.history-toggle-btn-container {
-  position: absolute;
-  top: 0px; /* Topo da tela */
-  right: 10px; /* Alinhado à direita */
-  z-index: 1000;
-}
-
-.history-toggle-btn {
-  position: fixed; /* Fixa o botão no topo da página */
-  top: 10px; /* Distância do topo */
-  left: 90%; /* Alinha à direita */
-  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
-  background-color: #565656;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1000; /* Garante que o botão fique acima de outros elementos */
-}
-
-.history-toggle-btn:hover {
-  background-color: var(--primary-color);
-}
-
-.chat-history-container {
-  position: fixed; /* Fixa o contêiner na página */
-  top: 70px; /* Distância do topo, abaixo do botão */
-  left: 90%; /* Alinha à direita */
-  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
-  z-index: 999; /* Garante que o contêiner fique acima de outros elementos */
-}
-
-.chat-history-box {
-  position: absolute; /* Relativo ao contêiner */
-  top: 50px; /* Distância do topo dentro do contêiner */
-  left: 50%; /* Centraliza dentro do contêiner */
-  transform: translateX(-50%); /* Ajusta para centralizar perfeitamente */
-  width: 300px;
-  max-height: 400px;
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
-  z-index: 998; /* Garante que o histórico fique abaixo do contêiner */
-}
-
-/* Mensagens */
+/* Messages */
 .messages {
   overflow-y: auto;
   flex: 1;
@@ -126,23 +77,69 @@
   padding-right: 8px;
 }
 
-.message {
-  background-color: var(--background-color-light);
-  padding: 10px 15px;
-  border-radius: 10px;
-  max-width: 75%;
-  font-size: 16px;
+/* Contêiner das mensagens */
+.message-container {
+  display: flex; /* Exibe a logo e a mensagem lado a lado */
+  align-items: center; /* Alinha a logo e a mensagem verticalmente */
+  gap: 10px; /* Espaçamento entre a logo e a mensagem */
+  margin-bottom: 10px; /* Espaçamento entre as mensagens */
+  max-width: 100%;
   word-wrap: break-word;
 }
 
-.message.user {
-  align-self: flex-end;
-  background-color: var(--primary-color);
-  color: white;
+/* Estilo da logo do bot */
+.message-logo {
+  width: 70px; /* Tamanho da logo */
+  height: 70px; /* Tamanho da logo */
+  margin-right: 10px; /* Espaçamento à direita da logo */
 }
 
+/* Estilo para a caixa de mensagem */
+.message {
+  padding: 12px 15px; /* Espaçamento dentro da caixa */
+  border-radius: 12px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  max-width: 75%; /* Limite de largura para a mensagem */
+  word-wrap: break-word; /* Quebra a palavra para caber na caixa */
+  display: inline-block; /* Faz a mensagem se ajustar ao tamanho do conteúdo */
+  line-height: 1.4; /* Ajusta a altura das linhas */
+   color: var(--text-color); /* Cor do texto */
+  background-color: var(--background-color-light); /* Cor de fundo padrão */
+}
+
+/* Estilos para a mensagem do bot */
 .message.bot {
-  align-self: flex-start;
+  display: inline-block; /* Permite o controle de animação da mensagem */
+  padding: 12px 15px;
+  border-radius: 12px;
+  background-color: #565656; /* Cor da mensagem do bot */
+  color: white;
+  max-width: 80%; /* Limita a largura */
+  word-wrap: break-word; /* Quebra a palavra caso necessário */
+  font-size: 16px;
+  animation: typing 2s steps(30) 1s forwards; /* Animação de digitação */
+  white-space: nowrap; /* Impede que a mensagem quebre linha */
+  overflow: hidden; /* Esconde o excesso da mensagem durante a digitação */
+}
+
+/* Criando a animação de digitação */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Estilos para a mensagem do usuário */
+.message.user {
+  align-self: flex-end; /* Alinha à direita */
+  background-color: var(--primary-color); /* Cor de fundo para mensagens do usuário */
+  color: var(--text-color); /* Cor do texto */
+  max-width: 80%; /* Limita a largura */
+  margin-left: auto; /* Empurra para a direita */
+  margin-right: 0; /* Garante alinhamento à direita */
 }
 
 /* Input */
@@ -152,14 +149,13 @@
 }
 
 .input-container input {
-  flex: 1;
-  padding: 10px 15px;
+  flex: 1; /* Preenche o espaço disponível */
+  padding: 12px 15px; /* Espaçamento dentro do input */
+  font-size: 16px;
   border-radius: 20px;
   border: none;
-  background-color: var(--background-color-light);
+  background-color: #3a3a3a;
   color: white;
-  font-size: 16px;
-  outline: none;
 }
 
 .input-container button {
@@ -178,7 +174,58 @@
   background-color: var(--primary-color);
 }
 
-/* Histórico de chats */
+/* History Toggle Button */
+.history-toggle-btn-container {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.history-toggle-btn {
+  position: fixed;
+  top: 10px;
+  left: 90%;
+  transform: translateX(-50%);
+  background-color: #565656;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.history-toggle-btn:hover {
+  background-color: var(--primary-color);
+}
+
+/* Chat History */
+.chat-history-container {
+  position: fixed;
+  top: 70px;
+  left: 90%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.chat-history-box {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  max-height: 400px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  z-index: 998;
+}
+
 .chat-history-box h3 {
   text-align: center;
   font-size: 18px;
@@ -225,3 +272,5 @@
   font-size: 12px;
   color: #888;
 }
+
+
