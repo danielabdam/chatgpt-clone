@@ -1,3 +1,4 @@
+import '../../styles/main.css';
 import React, { useState } from 'react';
 import './ChatHistory.css';
 
