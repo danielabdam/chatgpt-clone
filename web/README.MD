@@ -112,3 +112,7 @@ Este é apenas o começo — em breve, apresentarei o Orion, uma evolução dest
 ---
 
 Se tiver dúvidas ou problemas, sinta-se à vontade para abrir uma issue no repositório.
+
+---
+## [![Repography logo](https://images.repography.com/logo.svg)](https://repography.com) / Top contributors
+[![Top contributors](https://images.repography.com/66753993/danielabdam/chatgpt-clone/top-contributors/2xMlvfXMRofJ5P4PrDyPt3i9VGdiCiEQLDHFNvIk_M8/2BCQ3NAzWQ5tha7Faae_HJF_j4hYc4EizgwMIP93va8_table.svg)](https://github.com/danielabdam/chatgpt-clone/graphs/contributors)
