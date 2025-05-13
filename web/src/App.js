@@ -24,13 +24,14 @@ function App() {
             </a>
           </div>
           <div className="footer-center">
-            <span>© 2025 <a href="https://github.com" target="_blank" rel="noopener noreferrer">DA & AA</a>. Todos os direitos reservados.</span>
+            <span>© 2025 <a href="https://github.com" target="_blank" rel="noopener noreferrer">ORION</a>. Todos os direitos reservados.</span>
           </div>
           <div className="footer-right">
-            <strong>Colaboradores</strong>
+            <strong>Desenvolvedores</strong>
             <ul>
               <li><a href="https://github.com/danielabdam" target="_blank" rel="noopener noreferrer">Daniel Abdam</a></li>
               <li><a href="https://github.com/ambizito" target="_blank" rel="noopener noreferrer">Andre Azevedo</a></li>
+              <li><a href="https://github.com/emersonart" target="_blank" rel="noopener noreferrer">Emerson Dantas</a></li>
             </ul>
           </div>
         </div>
