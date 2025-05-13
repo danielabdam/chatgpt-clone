@@ -1,6 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, use } from 'react';
+import '../../styles/main.css';
 import './Chat.css';
 import ChatHistory from '../ChatHistory/ChatHistory';
+import axios from 'axios';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['clonegpt'] = 'yy5pBpergq0btN9M5f6WW2N52gpAXI';
+
+
 
 const Chat = () => {
   const [chats, setChats] = useState([{ title: 'Chat 01', messages: [] }]);
@@ -19,12 +25,23 @@ const Chat = () => {
     }, 50);
   };
 
-  const handleSend = () => {
+  const sendMessage = async (message,messages,id) => {
+    try {
+      const response = await axios.post('https://n8n.dev.salesol.com.br/webhook/clonegpt/chat', { message,messages,id });
+      return response.data.data;
+    } catch (error) {
+      console.error('Error sending message:', error);
+      return 'Desculpe, não consegui processar sua mensagem.';
+    }
+  }
+
+  const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMsg = { text: input, type: 'user' };
-    const botMsg = { text: `Você disse: ${input}`, type: 'bot' };
-
+    const menssage = await sendMessage(input, chats[activeChatIndex].messages,activeChatIndex);
+    console.log(menssage);
+    const botMsg = { text: menssage, type: 'bot' };
     const updatedChats = [...chats];
     updatedChats[activeChatIndex].messages.push(userMsg, botMsg);
 
