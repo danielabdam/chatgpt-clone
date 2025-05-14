@@ -8,7 +8,6 @@
   --text-color: #fff;
   --background-color: #2c2c2c;
   --background-color-light: #3a3a3a;
-  --background-shadow-color: 0, 0, 0;
 }
 
 /* Layout Base */
@@ -30,35 +29,31 @@
   transition: all 0.3s ease;
 }
 
-.chat-layout.expanded {
-  max-width: 100%;
-  padding: 20px;
-}
 
-/* Chat Wrapper */
 .chat-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
   width: 100%;
 }
 
+
+/* Cabeçalho do Chat */
 .chat-header {
-  margin-bottom: 20px;
-  font-size: 28px;
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
 }
 
-/* Chat Box */
+/* Caixa de Mensagens */
 .chat-box {
   background-color: #363636;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
   max-width: 100%;
-  box-shadow: 0 0 10px rgba(var(--background-shadow-color), 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,7 +61,9 @@
   max-height: 70vh;
 }
 
-/* Messages */
+
+
+/* Mensagens */
 .messages {
   overflow-y: auto;
   flex: 1;
@@ -77,102 +74,84 @@
   padding-right: 8px;
 }
 
-/* Contêiner das mensagens */
+/* Contêiner das Mensagens */
 .message-container {
-  display: flex; /* Exibe a logo e a mensagem lado a lado */
-  align-items: center; /* Alinha a logo e a mensagem verticalmente */
-  gap: 10px; /* Espaçamento entre a logo e a mensagem */
-  margin-bottom: 10px; /* Espaçamento entre as mensagens */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
   max-width: 100%;
   word-wrap: break-word;
 }
 
 /* Estilo da logo do bot */
 .message-logo {
-  width: 70px; /* Tamanho da logo */
-  height: 70px; /* Tamanho da logo */
-  margin-right: 10px; /* Espaçamento à direita da logo */
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
 }
 
-/* Estilo para a caixa de mensagem */
+/* Estilo para a Caixa de Mensagem */
 .message {
-  padding: 12px 15px; /* Espaçamento dentro da caixa */
-  border-radius: 12px; /* Bordas arredondadas */
-  font-size: 16px; /* Tamanho da fonte */
-  max-width: 75%; /* Limite de largura para a mensagem */
-  word-wrap: break-word; /* Quebra a palavra para caber na caixa */
-  display: inline-block; /* Faz a mensagem se ajustar ao tamanho do conteúdo */
-  line-height: 1.4; /* Ajusta a altura das linhas */
-   color: var(--text-color); /* Cor do texto */
-  background-color: var(--background-color-light); /* Cor de fundo padrão */
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
-/* Estilos para a mensagem do bot */
+/* Estilos para a Mensagem do Bot */
 .message.bot {
-  display: inline-block; /* Permite o controle de animação da mensagem */
-  padding: 12px 15px;
-  border-radius: 12px;
-  background-color: #565656; /* Cor da mensagem do bot */
+  align-self: flex-start;
+  background-color: #565656;
   color: white;
-  max-width: 80%; /* Limita a largura */
-  word-wrap: break-word; /* Quebra a palavra caso necessário */
-  font-size: 16px;
-  animation: typing 2s steps(30) 1s forwards; /* Animação de digitação */
-  white-space: nowrap; /* Impede que a mensagem quebre linha */
-  overflow: hidden; /* Esconde o excesso da mensagem durante a digitação */
 }
 
-/* Criando a animação de digitação */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* Estilos para a mensagem do usuário */
+/* Estilos para a Mensagem do Usuário */
 .message.user {
-  align-self: flex-end; /* Alinha à direita */
-  background-color: var(--primary-color); /* Cor de fundo para mensagens do usuário */
-  color: var(--text-color); /* Cor do texto */
-  max-width: 80%; /* Limita a largura */
-  margin-left: auto; /* Empurra para a direita */
-  margin-right: 0; /* Garante alinhamento à direita */
+  align-self: flex-end;
+  background-color: #9f65ff;
+  color: white;
 }
 
-/* Input */
+/* Campo de Entrada */
 .input-container {
   display: flex;
   align-items: center;
+  background-color: #2f2f2f;
+  padding: 5px 10px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .input-container input {
-  flex: 1; /* Preenche o espaço disponível */
-  padding: 12px 15px; /* Espaçamento dentro do input */
-  font-size: 16px;
-  border-radius: 20px;
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 30px;
   border: none;
   background-color: #3a3a3a;
   color: white;
+  font-size: 16px;
+  outline: none;
+  background: transparent;
 }
 
 .input-container button {
-  margin-left: 10px;
-  background-color: #565656;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
+  margin-left: 10px;
   cursor: pointer;
 }
 
 .input-container button:hover {
-  background-color: var(--primary-color);
+  background-color: #7a4fcc;
 }
+
 
 /* History Toggle Button */
 .history-toggle-btn-container {
