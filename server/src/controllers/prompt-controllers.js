@@ -1,4 +1,4 @@
-import { getClient, getDefaultModel } from "../llm-provider.js";
+import { getClient, getDefaultModel } from "./llm-provider.js";
 import { MODELS as OPENAI_MODELS } from "../config/openai.js";
 import { MODELS as DEEPSEEK_MODELS } from "../config/deepSeek.js";
 
