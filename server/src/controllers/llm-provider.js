@@ -1,5 +1,5 @@
-import createOpenAI from "./config/openai.js";
-import createDeepSeek from "./config/deepSeek.js";
+import createOpenAI from "../config/openai.js";
+import createDeepSeek from "../config/deepSeek.js";
 
 /** Registre novos provedores aqui */
 const factories = {
