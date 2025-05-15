@@ -21,28 +21,3 @@ export default function createOpenAI() {
   cached = new OpenAI({ apiKey });          // baseURL default
   return cached;
 }
-
-/** Autoteste */
-export async function selfTest() {
-  try {
-    const client = createOpenAI();
-    await client.chat.completions.create({
-      model: MODELS.chat[0],
-      messages: [{ role: "user", content: "ping" }],
-      max_tokens: 1
-    });
-    return true;
-  } catch (err) {
-    console.error("OpenAI self-test falhou →", err.message);
-    return false;
-  }
-}
-
-/* roda self-test se executado diretamente */
-const isMain = fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
-
-if (isMain) {
-  const ok = await selfTest();
-  console.log(ok ? "✅ OpenAI OK" : "❌ OpenAI ERROR");
-  process.exit(ok ? 0 : 1);
-}
