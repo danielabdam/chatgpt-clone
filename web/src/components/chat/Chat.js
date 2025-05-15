@@ -27,7 +27,7 @@ const Chat = () => {
 
   const sendMessage = async (message, messages, id) => {
     try {
-      const response = await axios.post('https://n8n.dev.salesol.com.br/webhook/clonegpt/chat', { message, messages, id });
+      await axios.post('/api/prompt', { prompt: message });
       if (!response.data || !response.data.data || response.data.data.trim() === '') {
         return 'Desculpe, não consegui processar sua mensagem.';
       }
