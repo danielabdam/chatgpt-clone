@@ -10,8 +10,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="page-title">Projeto Integração de IA</div>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+      
+        <div className="page-title">ORION <div>IA</div></div>
         <p>
         </p>
         <Chat />
