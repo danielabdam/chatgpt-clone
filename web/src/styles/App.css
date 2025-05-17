@@ -68,12 +68,46 @@
 
 /* Título da página */
 .page-title {
-  position: absolute; /* Fixa a posição do texto */
+   /* Fixa a posição do texto */
   top: 10px; /* Distância do topo */
   left: 20px; /* Distância da borda esquerda */
   font-size: 18px; /* Ajuste o tamanho da fonte, se necessário */
-  color: white; /* Cor do texto */
+  color: #625df5; /* Cor do texto */
   font-weight: bold; /* Deixa o texto em negrito */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  z-index: 1;
+  transform: scale(2);
+}
+.page-title > div{
+  color: white;
+  font-weight: 300;
+  position: relative;
+  display: inline-block;
+}
+/* .page-title > div::after {
+  color: #625df5;
+  font-weight: 900;
+  top: -2px;
+  content: "I";
+  position: absolute;
+  LEFT: 100%;
+  font-size: 111%;
+  transform: rotate(338deg) skew(1deg, 20deg);
+ 
+} 
+*/
+.page-title div::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  background: #625df5;
+  left: -2px;
+  z-index: -1;
+  transform: rotate(338deg) skew(0deg, 25deg);
 }
 
 
