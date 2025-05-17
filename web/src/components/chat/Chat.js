@@ -27,10 +27,11 @@ const Chat = () => {
 
   const sendMessage = async (message, messages, id) => {
     try {
-      await axios.post('/api/prompt', { prompt: message });
+      const response = await axios.post('http://localhost:5555/api/prompt', { prompt: message });
       if (!response.data || !response.data.data || response.data.data.trim() === '') {
         return 'Desculpe, não consegui processar sua mensagem.';
       }
+      console.log('Response:', response.data.data);
       return response.data.data;
     } catch (error) {
       console.error('Error sending message:', error);
@@ -41,18 +42,32 @@ const Chat = () => {
   const handleSend = async () => {
     if (!input.trim()) return;
 
+    // Adiciona a mensagem do usuário
     const userMsg = { text: input, type: 'user' };
-    const updatedChats = [...chats];
-    updatedChats[activeChatIndex].messages.push(userMsg);
-
-    setChats(updatedChats);
+    const updatedChatsUser = chats.map((chat, idx) =>
+      idx === activeChatIndex
+        ? { ...chat, messages: [...chat.messages, userMsg, { text: '...', type: 'bot' }] }
+        : chat
+    );
+    setChats(updatedChatsUser);
     setInput('');
 
-    const botResponse = await sendMessage(input, chats[activeChatIndex].messages, activeChatIndex);
-    const botMsg = { text: botResponse, type: 'bot' };
-    updatedChats[activeChatIndex].messages.push(botMsg);
+    // Aguarda a resposta do bot
+    const botResponse = await sendMessage(input, updatedChatsUser[activeChatIndex].messages, activeChatIndex);
 
-    setChats(updatedChats);
+
+    // Adiciona a mensagem do bot
+    setTimeout(() => {
+      updatedChatsUser[activeChatIndex].messages.pop(); // Remove o bot temporário
+
+      const botMsg = { text: botResponse, type: 'bot' };
+      const updatedChatsBot = updatedChatsUser.map((chat, idx) =>
+        idx === activeChatIndex
+          ? { ...chat, messages: [...chat.messages, botMsg] }
+          : chat
+      );
+      setChats(updatedChatsBot);
+    }, 5000);
   };
 
   const handleNewChat = () => {
@@ -72,21 +87,37 @@ const Chat = () => {
 
   return (
     <div className="chat-layout">
-      <div className="chat-wrapper">
-        {chats[activeChatIndex]?.messages.length === 0 && <ChatHeader />}
-        <ChatMessages messages={chats[activeChatIndex]?.messages} messagesEndRef={messagesEndRef} />
-        <ChatInput input={input} setInput={setInput} handleSend={handleSend} />
+      <div className="chat-container">
+        <div className="chat-wrapper">
+          {chats[activeChatIndex]?.messages.length === 0 && <ChatHeader />}
+          <div className="chat-box">
+            <ChatMessages
+              messages={chats[activeChatIndex]?.messages}
+              messagesEndRef={messagesEndRef}
+            />
+            <ChatInput
+              input={input}
+              setInput={setInput}
+              handleSend={handleSend}
+            />
+          </div>
+
+        </div>
+        <ChatHistory
+          history={chats.map((chat) => ({
+            title: chat.title,
+            timestamp: new Date().toLocaleString(),
+          }))}
+          onSelect={loadConversation}
+          onNewChat={handleNewChat}
+        />
       </div>
-      <ChatHistory
-        history={chats.map((chat) => ({
-          title: chat.title,
-          timestamp: new Date().toLocaleString(),
-        }))}
-        onSelect={loadConversation}
-        onNewChat={handleNewChat}
-      />
     </div>
   );
-};
+}
 
 export default Chat;
+
+
+
+
