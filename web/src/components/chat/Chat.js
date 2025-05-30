@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Chat.css';
-import ChatHeader from './ChatHeader';
-import ChatMessages from './ChatMessages';
-import ChatInput from './ChatInput';
-import ChatHistory from '../ChatHistory/ChatHistory';
+import ChatHeader from './ChatHeader.js';
+import ChatMessages from './ChatMessages.js';
+import ChatInput from './ChatInput.js';
+import ChatHistory from '../ChatHistory/ChatHistory.js';
 import axios from 'axios';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';

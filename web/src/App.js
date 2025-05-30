@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './styles/main.css';
 import logo from './iconnew.svg';
 import './styles/App.css';
-import Chat from './components/chat/Chat'; // ✅ com "c" minúsculo
+import Chat from './components/chat/Chat.js'; // ✅ com "c" minúsculo
 
 
 
